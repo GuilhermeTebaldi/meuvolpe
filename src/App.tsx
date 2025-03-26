@@ -329,7 +329,7 @@ export default function VolpeMOC() {
           onClick={() => setShowFullGallery(true)}
           className="rounded-full bg-yellow-400 px-6 py-3 font-semibold text-black shadow-lg transition hover:scale-105"
         >
-          Galeria
+          Ver Galeria
         </button>
       </div>
 
