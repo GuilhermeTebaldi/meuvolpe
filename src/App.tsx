@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 export default function VolpeMOC() {
+  const [showPayPal, setShowPayPal] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -35,9 +36,15 @@ export default function VolpeMOC() {
     "https://i.pinimg.com/736x/fe/c8/0b/fec80bdf826cc14ccc535a3da7cec512.jpg",
     "https://i.pinimg.com/736x/20/7c/2f/207c2f230be1ec4d697f439d409abb22.jpg",
     "https://i.pinimg.com/736x/6c/71/2a/6c712ab390cbcb075b5675794d250ca9.jpg",
+    "https://i.pinimg.com/736x/42/a5/95/42a5950a0332b9a152096d1b85b6d967.jpg ",
   ];
 
   const images2 = [
+    " https://i.pinimg.com/736x/9e/37/56/9e3756b6c41f8224b6d0a8bd6d36d52d.jpg",
+    "https://i.pinimg.com/474x/b6/6e/03/b66e03e5af958e86825b9358c201a2a7.jpg ",
+    " https://i.pinimg.com/736x/d6/9c/15/d69c159542c1ac8af8e8d031cc24d8e7.jpg",
+    "https://i.pinimg.com/736x/7d/67/cf/7d67cf1d53440dd16500ff8f50681d1b.jpg ",
+    " https://i.pinimg.com/736x/f6/f8/cc/f6f8cc50e6253fa02ef0afe983aef0a5.jpg",
     "https://i.pinimg.com/736x/65/e8/16/65e816bc812af9fab38e729e7e9915d3.jpg",
     "https://i.pinimg.com/736x/1b/b7/3e/1bb73e58a660d55639d6d11c85952ea7.jpg",
     "https://i.pinimg.com/1200x/10/e2/cf/10e2cf5ecec37636e9303b8a3dd13ebc.jpg",
@@ -76,7 +83,7 @@ export default function VolpeMOC() {
         <div className="flex gap-9">
           <div className="flex justify-center">
             <a
-              href="https://wa.me/5549991259242"
+              href="https://wa.me/554999102026"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block rounded-full bg-gradient-to-r from-yellow-400 to-yellow-200 px-10 py-2 text-lg text-black shadow-xl transition-transform duration-300 hover:scale-105 hover:shadow-yellow-500/40"
@@ -97,6 +104,7 @@ export default function VolpeMOC() {
           alt="Background"
           className="absolute inset-0 z-0 h-full w-full object-cover opacity-80"
         />
+
         <div className="z-100 relative max-w-3xl">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
@@ -118,6 +126,67 @@ export default function VolpeMOC() {
           ></motion.div>
         </div>
       </section>
+      <>
+        {/* Botão flutuante para pagamento */}
+        <div className="fixed bottom-6 left-6 z-50">
+          <motion.button
+            whileHover={{ scale: 1.1, boxShadow: "0 0 20px #FCD34D" }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              setShowPayPal(true);
+
+              const script = document.createElement("script");
+              script.src =
+                "https://www.paypal.com/sdk/js?client-id=AQt6MQE8GP_MvfnEijZSeO_BJuYXVZyIfyPwg1fw6k3mgyuTrLEOhNIfbPkNZzIuKmsRWANPxahkO5q7&vault=true&intent=subscription";
+              script.setAttribute(
+                "data-sdk-integration-source",
+                "button-factory",
+              );
+
+              script.onload = () => {
+                if (window.paypal) {
+                  window.paypal
+                    .Buttons({
+                      style: {
+                        shape: "pill",
+                        color: "gold",
+                        layout: "vertical",
+                        label: "subscribe",
+                      },
+                      createSubscription: (_data, actions) => {
+                        return actions.subscription.create({
+                          plan_id: "P-6N145630HT205693KM7SAS3I",
+                        });
+                      },
+                      onApprove: (data) => {
+                        alert(`Pagamento aprovado! ID: ${data.subscriptionID}`);
+                      },
+                    })
+                    .render("#paypal-button-popup-inner");
+                }
+              };
+
+              document.body.appendChild(script);
+            }}
+            className="rounded-full bg-yellow-400 px-6 py-3 font-semibold text-black shadow-xl"
+          >
+            💳 Assinar Site
+          </motion.button>
+        </div>
+
+        {/* Modal PayPal (visível apenas quando showPayPal for true) */}
+        {showPayPal && (
+          <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+            <button
+              onClick={() => setShowPayPal(false)}
+              className="absolute right-6 top-6 text-3xl font-bold text-white hover:text-yellow-400"
+            >
+              ✕
+            </button>
+            <div id="paypal-button-popup-inner" />
+          </div>
+        )}
+      </>
 
       {/* Galeria horizontal */}
       <section className="overflow-x-auto border-y border-zinc-300 bg-black px-1 py-24">
@@ -195,7 +264,7 @@ export default function VolpeMOC() {
             <h3 className="mb-1 text-[10px] uppercase tracking-widest text-[#A89B93]">
               Contato
             </h3>
-            <p>WhatsApp: (49) 99125-9242</p>
+            <p>WhatsApp: (49) 99102026</p>
           </div>
 
           {/* Redes Sociais */}
@@ -217,7 +286,7 @@ export default function VolpeMOC() {
                 />
               </a>
               <a
-                href="https://wa.me/5549991259242"
+                href="https://wa.me/554999102026"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full border border-[#CBBBA5] p-1 transition hover:bg-[#CBBBA5]/10"
@@ -238,6 +307,7 @@ export default function VolpeMOC() {
             <a href="#" className="hover:text-white/70">
               Termos de Uso
             </a>
+
             <span>|</span>
             <a href="#" className="hover:text-white/70">
               Aviso de Privacidade
@@ -246,6 +316,7 @@ export default function VolpeMOC() {
           <span> Guilherme Tebaldi </span>
         </div>
       </footer>
+
       <div className="flex items-center justify-center gap-3 py-4"></div>
 
       {/* Botão flutuante de galeria */}
