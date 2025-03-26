@@ -74,7 +74,10 @@ export default function VolpeMOC() {
   const allImages = [...images, ...images2];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-black via-zinc-800 to-black font-sans text-white">
+    <div
+      className="relative min-h-screen bg-gradient-to-br from-black via-zinc-800 to-black font-sans text-white"
+      style={{ overflowX: "hidden" }}
+    >
       {/* Barra superior */}
       <div className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-zinc-800 bg-black/20 px-6 py-2">
         <div className="text-lg font-bold tracking-wide text-yellow-100">
@@ -95,7 +98,7 @@ export default function VolpeMOC() {
       </div>
 
       {/* Hero */}
-      <section className="relative flex h-screen flex-col items-center justify-center overflow-hidden px-6 pt-1  text-center">
+      <section className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden px-4 pt-1 text-center md:h-screen">
         <motion.img
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -110,7 +113,7 @@ export default function VolpeMOC() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="text-6xl font-black tracking-wide text-white drop-shadow-[0_0_10px_#fff] md:text-8xl"
+            className="text-3xl font-black tracking-wide text-white drop-shadow-[0_0_10px_#fff] sm:text-5xl md:text-6xl"
           ></motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -196,7 +199,7 @@ export default function VolpeMOC() {
               key={index}
               whileHover={{ scale: 1.4 }}
               onClick={() => setSelectedImage(src)}
-              className="h-72 w-[12rem] flex-shrink-0 cursor-pointer overflow-hidden rounded-xl border border-yellow-500 shadow-lg transition-transform hover:ring-2 hover:ring-yellow-500/70"
+              className="... h-52 w-[10rem] flex-shrink-0 sm:h-60 sm:w-[12rem] md:h-72"
             >
               <img
                 src={src}
