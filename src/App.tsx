@@ -130,7 +130,7 @@ export default function VolpeMOC() {
         </div>
       </section>
       <>
-        {/* Botão flutuante para pagamento */}
+        {/* Botão flutuante para pagamento do plano 2 */}
         <div className="fixed bottom-6 left-6 z-50">
           <motion.button
             whileHover={{ scale: 1.1, boxShadow: "0 0 20px #FCD34D" }}
@@ -151,21 +151,23 @@ export default function VolpeMOC() {
                   window.paypal
                     .Buttons({
                       style: {
-                        shape: "pill",
+                        shape: "rect",
                         color: "gold",
                         layout: "vertical",
                         label: "subscribe",
                       },
                       createSubscription: (_data, actions) => {
                         return actions.subscription.create({
-                          plan_id: "P-6N145630HT205693KM7SAS3I",
+                          plan_id: "P-5BB03937FC990183VM7SBMXQ",
                         });
                       },
                       onApprove: (data) => {
                         alert(`Pagamento aprovado! ID: ${data.subscriptionID}`);
                       },
                     })
-                    .render("#paypal-button-popup-inner");
+                    .render(
+                      "#paypal-button-container-P-5BB03937FC990183VM7SBMXQ",
+                    );
                 }
               };
 
@@ -177,7 +179,7 @@ export default function VolpeMOC() {
           </motion.button>
         </div>
 
-        {/* Modal PayPal (visível apenas quando showPayPal for true) */}
+        {/* Modal PayPal (controlado por showPayPal) */}
         {showPayPal && (
           <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm">
             <button
@@ -186,7 +188,7 @@ export default function VolpeMOC() {
             >
               ✕
             </button>
-            <div id="paypal-button-popup-inner" />
+            <div id="paypal-button-container-P-5BB03937FC990183VM7SBMXQ" />
           </div>
         )}
       </>
